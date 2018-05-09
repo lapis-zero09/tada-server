@@ -11,3 +11,20 @@ go run main.go
 ```shell
 go test ./api/v1
 ```
+
+## gulp-aglio
+
+### install
+
+```shell
+npm install -g gulp aglio gulp-aglio gulp-rename
+```
+
+### run
+
+```shell
+gulp
+```
+
+input: api/all.apib
+output: doc/out.html
