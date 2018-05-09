@@ -29,3 +29,5 @@ gulp
 input: api/all.apib
 
 output: doc/out.html
+
+https://www.lapis-zero09.xyz/tada-server/doc/out.html
