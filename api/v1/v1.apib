@@ -1,0 +1,82 @@
+
+# Group V1
+
+## /api/v1/users/{user_id}
+
++ Parameters
+    + user_id: `1` (number)
+
+### User Show [GET]
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "Id": 1,
+                "UserName": "testuser1"
+            }        
+
+
+
+## /api/v1/users{?pagination}
+
++ Parameters
+    + pagination: `false` (boolean)
+
+### User Index [GET]
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            [
+                {
+                    "Id": 0,
+                    "UserName": "testuser0"
+                },
+                {
+                    "Id": 1,
+                    "UserName": "testuser1"
+                },
+                {
+                    "Id": 2,
+                    "UserName": "testuser2"
+                },
+                {
+                    "Id": 3,
+                    "UserName": "testuser3"
+                },
+                {
+                    "Id": 4,
+                    "UserName": "testuser4"
+                },
+                {
+                    "Id": 5,
+                    "UserName": "testuser5"
+                },
+                {
+                    "Id": 6,
+                    "UserName": "testuser6"
+                },
+                {
+                    "Id": 7,
+                    "UserName": "testuser7"
+                },
+                {
+                    "Id": 8,
+                    "UserName": "testuser8"
+                },
+                {
+                    "Id": 9,
+                    "UserName": "testuser9"
+                }
+            ]        
+
+
