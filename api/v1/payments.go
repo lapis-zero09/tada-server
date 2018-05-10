@@ -30,6 +30,6 @@ func GetPayment(c echo.Context) error {
 
 // func PostPayment(c echo.Context) error {}
 
-// func UpdataPayment(c echo.Context) error {}
+// func UpdatePayment(c echo.Context) error {}
 
 // func DeletePayment(c echo.Context) error {}
