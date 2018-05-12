@@ -1,2 +1,3 @@
 vendor/*
+data.db
 node_modules
