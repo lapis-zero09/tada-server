@@ -13,7 +13,7 @@ type Payment struct {
 func SamplePayments() []Payment {
 	payment := make([]Payment, 0, 10)
 	for i := 0; i < 10; i++ {
-		payment = append(payment, Payment{Id: i, PlaceId: i, Cost: i * 1000})
+		payment = append(payment, Payment{PlaceId: i + 1, Cost: (i + 1) * 1000})
 	}
 	return payment
 }
