@@ -30,7 +30,7 @@ func GetPayment(c echo.Context) error {
 	if payment.Id != 0 {
 		return c.JSON(http.StatusOK, payment)
 	} else {
-		err := fmt.Errorf("payment_id=%d is not found", id)
+		err := fmt.Errorf("payment_id=%s is not found", id)
 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}
 }
@@ -41,11 +41,13 @@ func PostPayment(c echo.Context) error {
 
 	var payment models.Payment
 	c.Bind(&payment)
-
-	db.Create(&payment)
-	return c.JSON(http.StatusOK, payment)
-	// err := errors.New("Fields are empty")
-	// return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	if payment.PlaceId > 0 && payment.Cost > 0 {
+		db.Create(&payment)
+		return c.JSON(http.StatusCreated, payment)
+	} else {
+		err := errors.New("Values must be int")
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
 }
 
 func UpdatePayment(c echo.Context) error {
@@ -55,24 +57,25 @@ func UpdatePayment(c echo.Context) error {
 	var payment models.Payment
 	db.First(&payment, id)
 
-	if payment.Id != 0 {
+	if payment.Id > 0 {
 		var newPayment models.Payment
 		c.Bind(&newPayment)
-
-		result := models.Payment{
-			Id:      payment.Id,
-			PlaceId: newPayment.PlaceId,
-			Cost:    newPayment.Cost,
+		if newPayment.PlaceId > 0 && newPayment.Cost > 0 {
+			result := models.Payment{
+				Id:      payment.Id,
+				PlaceId: newPayment.PlaceId,
+				Cost:    newPayment.Cost,
+			}
+			db.Save(&result)
+			return c.JSON(http.StatusOK, result)
+		} else {
+			err := errors.New("Values must be int")
+			return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 		}
-
-		db.Save(&result)
-		return c.JSON(http.StatusOK, newPayment)
 	} else {
-		err := errors.New("User not found")
+		err := fmt.Errorf("payment_id=%s is not found", id)
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
-	// err := errors.New("Fields are empty")
-	// return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 }
 
 func DeletePayment(c echo.Context) error {
@@ -82,11 +85,11 @@ func DeletePayment(c echo.Context) error {
 	var payment models.Payment
 	db.First(&payment, id)
 
-	if payment.Id != 0 {
+	if payment.Id > 0 {
 		db.Delete(&payment)
 		return c.NoContent(http.StatusNoContent)
 	} else {
-		err := fmt.Errorf("payment_id=%d is not found", id)
+		err := fmt.Errorf("payment_id=%s is not found", id)
 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}
 }

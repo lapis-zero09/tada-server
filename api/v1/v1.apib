@@ -1,6 +1,165 @@
 
 # Group V1
 
+## /api/v1/payments
+
+### Get Payments [GET]
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "placeid": 7777,
+                    "cost": 9999
+                },
+                {
+                    "id": 3,
+                    "placeid": 7777,
+                    "cost": 9999
+                },
+                {
+                    "id": 5,
+                    "placeid": 5,
+                    "cost": 5000
+                },
+                {
+                    "id": 6,
+                    "placeid": 6,
+                    "cost": 6000
+                },
+                {
+                    "id": 7,
+                    "placeid": 7,
+                    "cost": 7000
+                },
+                {
+                    "id": 8,
+                    "placeid": 8,
+                    "cost": 8000
+                },
+                {
+                    "id": 9,
+                    "placeid": 9,
+                    "cost": 9000
+                },
+                {
+                    "id": 10,
+                    "placeid": 10,
+                    "cost": 10000
+                },
+                {
+                    "id": 11,
+                    "placeid": 7777,
+                    "cost": 9999
+                },
+                {
+                    "id": 12,
+                    "placeid": 7777,
+                    "cost": 9999
+                },
+                {
+                    "id": 13,
+                    "placeid": 7777,
+                    "cost": 9999
+                },
+                {
+                    "id": 14,
+                    "placeid": 0,
+                    "cost": 0
+                },
+                {
+                    "id": 15,
+                    "placeid": 7777,
+                    "cost": 9999
+                }
+            ]        
+
+
+### Post Payment [POST]
+
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+    + Body
+
+            cost=9999&placeid=7777        
+
++ Response 201 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "id": 16,
+                "placeid": 7777,
+                "cost": 9999
+            }        
+
+
+
+## /api/v1/payments/{payment_id}
+
++ Parameters
+    + payment_id: `1` (number)
+
+### DELETE [DELETE]
+
+
++ Response 204 
+
+### Get Payment [GET]
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "id": 1,
+                "placeid": 7777,
+                "cost": 9999
+            }        
+
+
+### Update Payment [PUT]
+
+
++ Request (application/json)
+
+
+
+    + Body
+
+            {
+                "placeid": 7777,
+                "cost": 9999
+            }        
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "id": 1,
+                "placeid": 7777,
+                "cost": 9999
+            }        
+
+
+
 ## /api/v1/users/{user_id}
 
 + Parameters
