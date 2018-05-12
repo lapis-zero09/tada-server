@@ -8,10 +8,8 @@ go run main.go
 
 ## test code
 
-**This section is future work.**
-
 ```shell
-# go test ./api/v1
+go test ./api/v1
 ```
 
 ## gulp-aglio
