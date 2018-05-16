@@ -20,7 +20,13 @@ go test ./api/v1
 npm install -g gulp aglio gulp-aglio gulp-rename
 ```
 
-### run
+### run server
+
+```shell
+ aglio -i api/all.apib --server
+```
+
+## make html
 
 ```shell
 gulp
