@@ -17,10 +17,10 @@ func NewRouter() *echo.Echo {
 	e1.PUT("/payments/:paymentId", v1.UpdatePayment)
 	e1.DELETE("/payments/:paymentId", v1.DeletePayment)
 
-	// e1.GET("/tags", v1.GetTags)
-	// e1.GET("/tags/:tagId", v1.GetTag)
-	// e1.POST("/tags", v1.PostTag)
-	// e1.PUT("/tags/:tagId", v1.UpdateTag)
-	// e1.DELETE("/tags/:tagId", v1.DeleteTag)
+	e1.GET("/tags", v1.GetTags)
+	e1.GET("/tags/:tagId", v1.GetTag)
+	e1.POST("/tags", v1.PostTag)
+	e1.PUT("/tags/:tagId", v1.UpdateTag)
+	e1.DELETE("/tags/:tagId", v1.DeleteTag)
 	return e
 }
