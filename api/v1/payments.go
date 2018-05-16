@@ -10,33 +10,31 @@ import (
 )
 
 func GetPayments(c echo.Context) error {
-	db := models.InitDb()
+	db := models.InitPaymentTable()
 	defer db.Close()
 
 	var payments []models.Payment
-	// SELECT * FROM users
 	db.Find(&payments)
 
 	return c.JSON(http.StatusOK, payments)
 }
 
 func GetPayment(c echo.Context) error {
-	db := models.InitDb()
+	db := models.InitPaymentTable()
 	defer db.Close()
-	id := c.Param("payment_id")
+	id := c.Param("paymentId")
 	var payment models.Payment
 	db.First(&payment, id)
 
 	if payment.Id != 0 {
 		return c.JSON(http.StatusOK, payment)
-	} else {
-		err := fmt.Errorf("payment_id=%s is not found", id)
-		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}
+	err := fmt.Errorf("paymentId=%s is not found", id)
+	return echo.NewHTTPError(http.StatusNotFound, err.Error())
 }
 
 func PostPayment(c echo.Context) error {
-	db := models.InitDb()
+	db := models.InitPaymentTable()
 	defer db.Close()
 
 	var payment models.Payment
@@ -44,16 +42,15 @@ func PostPayment(c echo.Context) error {
 	if payment.PlaceId > 0 && payment.Cost > 0 {
 		db.Create(&payment)
 		return c.JSON(http.StatusCreated, payment)
-	} else {
-		err := errors.New("Values must be int")
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
+	err := errors.New("Values must be int")
+	return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 }
 
 func UpdatePayment(c echo.Context) error {
-	db := models.InitDb()
+	db := models.InitPaymentTable()
 	defer db.Close()
-	id := c.Param("payment_id")
+	id := c.Param("paymentId")
 	var payment models.Payment
 	db.First(&payment, id)
 
@@ -68,28 +65,25 @@ func UpdatePayment(c echo.Context) error {
 			}
 			db.Save(&result)
 			return c.JSON(http.StatusOK, result)
-		} else {
-			err := errors.New("Values must be int")
-			return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 		}
-	} else {
-		err := fmt.Errorf("payment_id=%s is not found", id)
+		err := errors.New("Values must be int")
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
+	err := fmt.Errorf("paymentId=%s is not found", id)
+	return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 }
 
 func DeletePayment(c echo.Context) error {
-	db := models.InitDb()
+	db := models.InitPaymentTable()
 	defer db.Close()
-	id := c.Param("payment_id")
+	id := c.Param("paymentId")
 	var payment models.Payment
 	db.First(&payment, id)
 
 	if payment.Id > 0 {
 		db.Delete(&payment)
 		return c.NoContent(http.StatusNoContent)
-	} else {
-		err := fmt.Errorf("payment_id=%s is not found", id)
-		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}
+	err := fmt.Errorf("paymentId=%s is not found", id)
+	return echo.NewHTTPError(http.StatusNotFound, err.Error())
 }

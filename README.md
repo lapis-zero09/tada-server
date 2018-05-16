@@ -3,13 +3,13 @@
 ## run server
 
 ```shell
-go run main.go
+rm -f ./data.db && go run main.go
 ```
 
 ## test code
 
 ```shell
-go test ./api/v1
+rm -f ./api/v1/data.db && go test ./api/v1
 ```
 
 ## gulp-aglio

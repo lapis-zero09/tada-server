@@ -15,68 +15,53 @@
             [
                 {
                     "id": 1,
-                    "placeid": 7777,
-                    "cost": 9999
+                    "placeId": 1,
+                    "cost": 1000
+                },
+                {
+                    "id": 2,
+                    "placeId": 2,
+                    "cost": 2000
                 },
                 {
                     "id": 3,
-                    "placeid": 7777,
-                    "cost": 9999
+                    "placeId": 3,
+                    "cost": 3000
+                },
+                {
+                    "id": 4,
+                    "placeId": 4,
+                    "cost": 4000
                 },
                 {
                     "id": 5,
-                    "placeid": 5,
+                    "placeId": 5,
                     "cost": 5000
                 },
                 {
                     "id": 6,
-                    "placeid": 6,
+                    "placeId": 6,
                     "cost": 6000
                 },
                 {
                     "id": 7,
-                    "placeid": 7,
+                    "placeId": 7,
                     "cost": 7000
                 },
                 {
                     "id": 8,
-                    "placeid": 8,
+                    "placeId": 8,
                     "cost": 8000
                 },
                 {
                     "id": 9,
-                    "placeid": 9,
+                    "placeId": 9,
                     "cost": 9000
                 },
                 {
                     "id": 10,
-                    "placeid": 10,
+                    "placeId": 10,
                     "cost": 10000
-                },
-                {
-                    "id": 11,
-                    "placeid": 7777,
-                    "cost": 9999
-                },
-                {
-                    "id": 12,
-                    "placeid": 7777,
-                    "cost": 9999
-                },
-                {
-                    "id": 13,
-                    "placeid": 7777,
-                    "cost": 9999
-                },
-                {
-                    "id": 14,
-                    "placeid": 0,
-                    "cost": 0
-                },
-                {
-                    "id": 15,
-                    "placeid": 7777,
-                    "cost": 9999
                 }
             ]        
 
@@ -90,7 +75,7 @@
 
     + Body
 
-            cost=9999&placeid=7777        
+            cost=9999&placeId=7777        
 
 + Response 201 (application/json; charset=UTF-8)
 
@@ -99,17 +84,17 @@
     + Body
 
             {
-                "id": 16,
-                "placeid": 7777,
+                "id": 11,
+                "placeId": 7777,
                 "cost": 9999
             }        
 
 
 
-## /api/v1/payments/{payment_id}
+## /api/v1/payments/{paymentId}
 
 + Parameters
-    + payment_id: `1` (number)
+    + paymentId: `1` (number)
 
 ### DELETE [DELETE]
 
@@ -127,8 +112,8 @@
 
             {
                 "id": 1,
-                "placeid": 7777,
-                "cost": 9999
+                "placeId": 1,
+                "cost": 1000
             }        
 
 
@@ -142,7 +127,7 @@
     + Body
 
             {
-                "placeid": 7777,
+                "placeId": 7777,
                 "cost": 9999
             }        
 
@@ -154,16 +139,16 @@
 
             {
                 "id": 1,
-                "placeid": 7777,
+                "placeId": 7777,
                 "cost": 9999
             }        
 
 
 
-## /api/v1/users/{user_id}
+## /api/v1/users/{userId}
 
 + Parameters
-    + user_id: `1` (number)
+    + userId: `1` (number)
 
 ### User Show [GET]
 

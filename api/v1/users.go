@@ -33,12 +33,12 @@ func UserIndex(c echo.Context) error {
 
 func UserShow(c echo.Context) error {
 	users := models.SampleUsers()
-	id, err := strconv.Atoi(c.Param("user_id"))
+	id, err := strconv.Atoi(c.Param("userId"))
 	if err != nil {
 		return err
 	}
 	if id > len(users)-1 {
-		err := fmt.Errorf("user_id=%d is not found", id)
+		err := fmt.Errorf("userId=%d is not found", id)
 		return echo.NewHTTPError(http.StatusNotFound, err.Error())
 	}
 	return c.JSON(http.StatusOK, users[id])

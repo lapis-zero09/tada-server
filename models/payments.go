@@ -4,9 +4,8 @@ import "github.com/jinzhu/gorm"
 import _ "github.com/mattn/go-sqlite3"
 
 type Payment struct {
-	// gorm.Model
 	Id      int `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
-	PlaceId int `gorm:"not null" form:"placeid" json:"placeid"`
+	PlaceId int `gorm:"not null" form:"placeId" json:"placeId"`
 	Cost    int `gorm:"not null" form:"cost" json:"cost"`
 }
 
@@ -18,7 +17,7 @@ func SamplePayments() []Payment {
 	return payment
 }
 
-func InitDb() *gorm.DB {
+func InitPaymentTable() *gorm.DB {
 	db, err := gorm.Open("sqlite3", "./data.db")
 	db.LogMode(true)
 
