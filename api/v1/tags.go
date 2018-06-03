@@ -22,6 +22,7 @@ func GetTags(c echo.Context) error {
 func GetTag(c echo.Context) error {
 	db := models.InitTagTable()
 	defer db.Close()
+
 	id := c.Param("tagId")
 	var tag models.Tag
 	db.First(&tag, id)

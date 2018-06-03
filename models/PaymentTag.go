@@ -8,9 +8,11 @@ import (
 )
 
 type PaymentTag struct {
-	ID        int `gorm:"primary_key" form:"id" json:"id"`
-	PaymentID int `gorm:"not null" form:"paymentId" json:"paymentId"`
-	TagID     int `gorm:"not null" form:"tagId" json:"tagId"`
+	ID        int     `gorm:"primary_key" form:"id" json:"id"`
+	PaymentID int     `gorm:"not null" form:"paymentId" json:"paymentId"`
+	TagID     int     `gorm:"not null" form:"tagId" json:"tagId"`
+	Payment   Payment `gorm:"foreignkey:PaymentID;association_foreignkey:ID"`
+	Tag       Tag     `gorm:"foreignkey:TagID;association_foreignkey:ID"`
 }
 
 func SamplePaymentTags() []PaymentTag {
@@ -20,7 +22,6 @@ func SamplePaymentTags() []PaymentTag {
 	for i := 0; i < 10; i++ {
 		paymentTags = append(paymentTags,
 			PaymentTag{
-				ID:        i + 1,
 				PaymentID: random.Intn(10-1) + 1,
 				TagID:     random.Intn(15-1) + 1,
 			})

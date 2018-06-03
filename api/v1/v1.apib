@@ -16,52 +16,142 @@
                 {
                     "id": 1,
                     "paymentId": 4,
-                    "tagId": 1
+                    "tagId": 1,
+                    "Payment": {
+                        "id": 4,
+                        "placeId": 4,
+                        "cost": 4000
+                    },
+                    "Tag": {
+                        "id": 1,
+                        "tagName": "電気代"
+                    }
                 },
                 {
                     "id": 2,
                     "paymentId": 8,
-                    "tagId": 1
+                    "tagId": 1,
+                    "Payment": {
+                        "id": 8,
+                        "placeId": 8,
+                        "cost": 8000
+                    },
+                    "Tag": {
+                        "id": 1,
+                        "tagName": "電気代"
+                    }
                 },
                 {
                     "id": 3,
                     "paymentId": 7,
-                    "tagId": 13
+                    "tagId": 13,
+                    "Payment": {
+                        "id": 7,
+                        "placeId": 7,
+                        "cost": 7000
+                    },
+                    "Tag": {
+                        "id": 13,
+                        "tagName": "本代"
+                    }
                 },
                 {
                     "id": 4,
                     "paymentId": 5,
-                    "tagId": 10
+                    "tagId": 10,
+                    "Payment": {
+                        "id": 5,
+                        "placeId": 5,
+                        "cost": 5000
+                    },
+                    "Tag": {
+                        "id": 10,
+                        "tagName": "菓子代"
+                    }
                 },
                 {
                     "id": 5,
                     "paymentId": 8,
-                    "tagId": 9
+                    "tagId": 9,
+                    "Payment": {
+                        "id": 8,
+                        "placeId": 8,
+                        "cost": 8000
+                    },
+                    "Tag": {
+                        "id": 9,
+                        "tagName": "雑費"
+                    }
                 },
                 {
                     "id": 6,
                     "paymentId": 6,
-                    "tagId": 9
+                    "tagId": 9,
+                    "Payment": {
+                        "id": 6,
+                        "placeId": 6,
+                        "cost": 6000
+                    },
+                    "Tag": {
+                        "id": 9,
+                        "tagName": "雑費"
+                    }
                 },
                 {
                     "id": 7,
                     "paymentId": 9,
-                    "tagId": 13
+                    "tagId": 13,
+                    "Payment": {
+                        "id": 9,
+                        "placeId": 9,
+                        "cost": 9000
+                    },
+                    "Tag": {
+                        "id": 13,
+                        "tagName": "本代"
+                    }
                 },
                 {
                     "id": 8,
                     "paymentId": 3,
-                    "tagId": 3
+                    "tagId": 3,
+                    "Payment": {
+                        "id": 3,
+                        "placeId": 3,
+                        "cost": 3000
+                    },
+                    "Tag": {
+                        "id": 3,
+                        "tagName": "家賃"
+                    }
                 },
                 {
                     "id": 9,
                     "paymentId": 6,
-                    "tagId": 4
+                    "tagId": 4,
+                    "Payment": {
+                        "id": 6,
+                        "placeId": 6,
+                        "cost": 6000
+                    },
+                    "Tag": {
+                        "id": 4,
+                        "tagName": "水道代"
+                    }
                 },
                 {
                     "id": 10,
                     "paymentId": 4,
-                    "tagId": 3
+                    "tagId": 3,
+                    "Payment": {
+                        "id": 4,
+                        "placeId": 4,
+                        "cost": 4000
+                    },
+                    "Tag": {
+                        "id": 3,
+                        "tagName": "家賃"
+                    }
                 }
             ]        
 
@@ -75,7 +165,7 @@
 
     + Body
 
-            paymentId=7777&tagId=9999        
+            paymentId=5&tagId=12        
 
 + Response 201 (application/json; charset=UTF-8)
 
@@ -85,8 +175,17 @@
 
             {
                 "id": 11,
-                "paymentId": 7777,
-                "tagId": 9999
+                "paymentId": 5,
+                "tagId": 12,
+                "Payment": {
+                    "id": 0,
+                    "placeId": 0,
+                    "cost": 0
+                },
+                "Tag": {
+                    "id": 0,
+                    "tagName": ""
+                }
             }        
 
 
@@ -111,9 +210,18 @@
     + Body
 
             {
-                "id": 10,
+                "id": 1,
                 "paymentId": 4,
-                "tagId": 3
+                "tagId": 1,
+                "Payment": {
+                    "id": 4,
+                    "placeId": 4,
+                    "cost": 4000
+                },
+                "Tag": {
+                    "id": 1,
+                    "tagName": "電気代"
+                }
             }        
 
 
@@ -127,8 +235,8 @@
     + Body
 
             {
-                "paymentId": 7777,
-                "tagId": 9999
+                "paymentId": 3,
+                "tagId": 12
             }        
 
 + Response 200 (application/json; charset=UTF-8)
@@ -139,8 +247,17 @@
 
             {
                 "id": 1,
-                "paymentId": 7777,
-                "tagId": 9999
+                "paymentId": 3,
+                "tagId": 12,
+                "Payment": {
+                    "id": 0,
+                    "placeId": 0,
+                    "cost": 0
+                },
+                "Tag": {
+                    "id": 0,
+                    "tagName": ""
+                }
             }        
 
 
@@ -454,7 +571,7 @@
     + Body
 
             {
-                "id": 1,
+                "id": 0,
                 "userName": "testuser1"
             }        
 
@@ -480,39 +597,39 @@
                     "userName": "testuser0"
                 },
                 {
-                    "id": 1,
+                    "id": 0,
                     "userName": "testuser1"
                 },
                 {
-                    "id": 2,
+                    "id": 0,
                     "userName": "testuser2"
                 },
                 {
-                    "id": 3,
+                    "id": 0,
                     "userName": "testuser3"
                 },
                 {
-                    "id": 4,
+                    "id": 0,
                     "userName": "testuser4"
                 },
                 {
-                    "id": 5,
+                    "id": 0,
                     "userName": "testuser5"
                 },
                 {
-                    "id": 6,
+                    "id": 0,
                     "userName": "testuser6"
                 },
                 {
-                    "id": 7,
+                    "id": 0,
                     "userName": "testuser7"
                 },
                 {
-                    "id": 8,
+                    "id": 0,
                     "userName": "testuser8"
                 },
                 {
-                    "id": 9,
+                    "id": 0,
                     "userName": "testuser9"
                 }
             ]        

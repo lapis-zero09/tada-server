@@ -9,41 +9,73 @@ import (
 	"github.com/lapis-zero09/tada-server/models"
 )
 
+func intInSlice(num int, list []int) bool {
+	for _, numInList := range list {
+		if numInList == num {
+			return true
+		}
+	}
+	return false
+}
+
 func GetPaymentTags(c echo.Context) error {
-	db := models.InitPaymentTagTable()
+	db := models.InitPaymentTable()
+	db = models.InitTagTable()
+	db = models.InitPaymentTagTable()
 	defer db.Close()
+
 	var paymentTags []models.PaymentTag
-	db.Find(&paymentTags)
+	err := db.Joins("JOIN payments ON payment_tags.payment_id = payments.id").
+		Joins("JOIN tags ON payment_tags.tag_id = tags.id").
+		Preload("Payment").
+		Preload("Tag").
+		Find(&paymentTags).
+		Error
+	if err != nil {
+		return echo.NewHTTPError(http.StatusNotFound, err)
+	}
 
 	return c.JSON(http.StatusOK, paymentTags)
 }
 
 func GetPaymentTag(c echo.Context) error {
-	db := models.InitPaymentTagTable()
+	db := models.InitPaymentTable()
+	db = models.InitTagTable()
+	db = models.InitPaymentTagTable()
 	defer db.Close()
-	id := c.Param("paymentTagID")
+
+	id := c.Param("paymentTagId")
 	var paymentTag models.PaymentTag
-	db.Find(&paymentTag, id)
+	db.Joins("JOIN payments ON payment_tags.payment_id = payments.id").
+		Joins("JOIN tags ON payment_tags.tag_id = tags.id").
+		Preload("Payment").
+		Preload("Tag").
+		First(&paymentTag, id)
 
 	if paymentTag.ID > 0 {
 		return c.JSON(http.StatusOK, paymentTag)
 	}
-	err := fmt.Errorf("paymentTagID=%s is not found", id)
+	err := fmt.Errorf("paymentTagId=%s is not found", id)
 	return echo.NewHTTPError(http.StatusNotFound, err.Error())
 }
 
 func PostPaymentTag(c echo.Context) error {
 	db := models.InitPaymentTagTable()
 	defer db.Close()
+
 	var paymentTag models.PaymentTag
 	c.Bind(&paymentTag)
-	fmt.Println(paymentTag)
 
-	if paymentTag.PaymentID > 0 && paymentTag.TagID > 0 {
+	var paymentIds []int
+	db.Model(&models.Payment{}).Pluck("id", &paymentIds)
+	var tagIds []int
+	db.Model(&models.Tag{}).Pluck("id", &tagIds)
+
+	if intInSlice(paymentTag.PaymentID, paymentIds) && intInSlice(paymentTag.TagID, tagIds) {
 		db.Create(&paymentTag)
 		return c.JSON(http.StatusCreated, paymentTag)
 	}
-	str := fmt.Sprintf("Values must be int %d: %d", paymentTag.PaymentID, paymentTag.TagID)
+	str := fmt.Sprintf("Values must be exsists %d: %d", paymentTag.PaymentID, paymentTag.TagID)
 	err := errors.New(str)
 	return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 }
@@ -51,14 +83,22 @@ func PostPaymentTag(c echo.Context) error {
 func UpdatePaymentTag(c echo.Context) error {
 	db := models.InitPaymentTagTable()
 	defer db.Close()
-	id := c.Param("paymentTagID")
+
+	id := c.Param("paymentTagId")
 	var paymentTag models.PaymentTag
 	db.First(&paymentTag, id)
+
+	var paymentIds []int
+	db.Model(&models.Payment{}).Pluck("id", &paymentIds)
+	fmt.Println(paymentIds)
+	var tagIds []int
+	db.Model(&models.Tag{}).Pluck("id", &tagIds)
+	fmt.Println(tagIds)
 
 	if paymentTag.ID > 0 {
 		var newPaymentTag models.PaymentTag
 		c.Bind(&newPaymentTag)
-		if newPaymentTag.PaymentID > 0 && newPaymentTag.TagID > 0 {
+		if intInSlice(newPaymentTag.PaymentID, paymentIds) && intInSlice(newPaymentTag.TagID, tagIds) {
 			result := models.PaymentTag{
 				ID:        paymentTag.ID,
 				PaymentID: newPaymentTag.PaymentID,
@@ -67,7 +107,7 @@ func UpdatePaymentTag(c echo.Context) error {
 			db.Save(&result)
 			return c.JSON(http.StatusOK, result)
 		}
-		str := fmt.Sprintf("Values must be int %d %d", newPaymentTag.PaymentID, newPaymentTag.TagID)
+		str := fmt.Sprintf("Values must be exists %d %d", newPaymentTag.PaymentID, newPaymentTag.TagID)
 		err := errors.New(str)
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
@@ -78,7 +118,8 @@ func UpdatePaymentTag(c echo.Context) error {
 func DeletePaymentTag(c echo.Context) error {
 	db := models.InitPaymentTagTable()
 	defer db.Close()
-	id := c.Param("paymentTagID")
+
+	id := c.Param("paymentTagId")
 	var paymentTag models.PaymentTag
 	db.First(&paymentTag, id)
 

@@ -32,7 +32,7 @@ func TestGetPaymentTag(t *testing.T) {
 func TestPostPaymentTag(t *testing.T) {
 	URL := server.URL + "/api/v1/payment_tags"
 	res, err := http.PostForm(URL,
-		url.Values{"paymentId": {"7777"}, "tagId": {"9999"}})
+		url.Values{"paymentId": {"5"}, "tagId": {"12"}})
 	if err != nil {
 		t.Errorf("Expected nil, got %v", err)
 	}
@@ -43,7 +43,7 @@ func TestPostPaymentTag(t *testing.T) {
 
 func TestUpdatePaymentTag(t *testing.T) {
 	URL := server.URL + "/api/v1/payment_tags/1"
-	jsonStr := `{"paymentId": 7777, "tagId": 9999}`
+	jsonStr := `{"paymentId": 3, "tagId": 12}`
 
 	req, err := http.NewRequest("PUT", URL, strings.NewReader(jsonStr))
 	req.Header.Set("Content-Type", "application/json")

@@ -1,6 +1,8 @@
 package models
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type User struct {
 	ID       int    `gorm:"primary_key" form:"id" json:"id"`
@@ -10,7 +12,7 @@ type User struct {
 func SampleUsers() []User {
 	users := make([]User, 0, 10)
 	for i := 0; i < 10; i++ {
-		users = append(users, User{ID: i, UserName: fmt.Sprint("testuser", i)})
+		users = append(users, User{UserName: fmt.Sprint("testuser", i)})
 	}
 	return users
 }

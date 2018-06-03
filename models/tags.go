@@ -12,7 +12,7 @@ func SampleTags() []Tag {
 	tagName := []string{"電気代", "食費", "家賃", "水道代", "ガス代", "交通費", "酒代", "飲み物代", "雑費", "菓子代", "電化製品", "服代", "本代", "通信代", "医療費"}
 	tag := make([]Tag, 0, 15)
 	for i := 0; i < 15; i++ {
-		tag = append(tag, Tag{ID: i + 1, Name: tagName[i]})
+		tag = append(tag, Tag{Name: tagName[i]})
 	}
 	return tag
 }
