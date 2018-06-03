@@ -6,7 +6,7 @@ import (
 )
 
 type Payment struct {
-	ID      int `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
+	ID      int `gorm:"primary_key" form:"id" json:"id"`
 	PlaceID int `gorm:"not null" form:"placeId" json:"placeId"`
 	Cost    int `gorm:"not null" form:"cost" json:"cost"`
 }
