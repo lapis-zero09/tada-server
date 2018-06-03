@@ -1,7 +1,9 @@
 package models
 
-import "github.com/jinzhu/gorm"
-import _ "github.com/mattn/go-sqlite3"
+import (
+	"github.com/jinzhu/gorm"
+	_ "github.com/mattn/go-sqlite3"
+)
 
 type Payment struct {
 	Id      int `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
@@ -10,11 +12,11 @@ type Payment struct {
 }
 
 func SamplePayments() []Payment {
-	payment := make([]Payment, 0, 10)
+	payments := make([]Payment, 0, 10)
 	for i := 0; i < 10; i++ {
-		payment = append(payment, Payment{PlaceId: i + 1, Cost: (i + 1) * 1000})
+		payments = append(payments, Payment{PlaceId: i + 1, Cost: (i + 1) * 1000})
 	}
-	return payment
+	return payments
 }
 
 func InitPaymentTable() *gorm.DB {

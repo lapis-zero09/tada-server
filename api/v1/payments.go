@@ -12,7 +12,6 @@ import (
 func GetPayments(c echo.Context) error {
 	db := models.InitPaymentTable()
 	defer db.Close()
-
 	var payments []models.Payment
 	db.Find(&payments)
 
@@ -36,9 +35,9 @@ func GetPayment(c echo.Context) error {
 func PostPayment(c echo.Context) error {
 	db := models.InitPaymentTable()
 	defer db.Close()
-
 	var payment models.Payment
 	c.Bind(&payment)
+
 	if payment.PlaceId > 0 && payment.Cost > 0 {
 		db.Create(&payment)
 		return c.JSON(http.StatusCreated, payment)

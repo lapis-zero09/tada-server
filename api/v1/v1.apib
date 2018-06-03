@@ -1,6 +1,150 @@
 
 # Group V1
 
+## /api/v1/payment_tags
+
+### Get Payment Tags [GET]
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "paymentId": 4,
+                    "tagId": 1
+                },
+                {
+                    "id": 2,
+                    "paymentId": 8,
+                    "tagId": 1
+                },
+                {
+                    "id": 3,
+                    "paymentId": 7,
+                    "tagId": 13
+                },
+                {
+                    "id": 4,
+                    "paymentId": 5,
+                    "tagId": 10
+                },
+                {
+                    "id": 5,
+                    "paymentId": 8,
+                    "tagId": 9
+                },
+                {
+                    "id": 6,
+                    "paymentId": 6,
+                    "tagId": 9
+                },
+                {
+                    "id": 7,
+                    "paymentId": 9,
+                    "tagId": 13
+                },
+                {
+                    "id": 8,
+                    "paymentId": 3,
+                    "tagId": 3
+                },
+                {
+                    "id": 9,
+                    "paymentId": 6,
+                    "tagId": 4
+                },
+                {
+                    "id": 10,
+                    "paymentId": 4,
+                    "tagId": 3
+                }
+            ]        
+
+
+### Post Payment Tag [POST]
+
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+    + Body
+
+            paymentId=7777&tagId=9999        
+
++ Response 201 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "id": 11,
+                "paymentId": 7777,
+                "tagId": 9999
+            }        
+
+
+
+## /api/v1/payment_tags/{paymentTagId}
+
++ Parameters
+    + paymentTagId: `1` (number)
+
+### DELETE [DELETE]
+
+
++ Response 204 
+
+### Get Payment Tag [GET]
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "id": 1,
+                "paymentId": 4,
+                "tagId": 1
+            }        
+
+
+### Update Payment Tag [PUT]
+
+
++ Request (application/json)
+
+
+
+    + Body
+
+            {
+                "paymentId": 7777,
+                "tagId": 9999
+            }        
+
++ Response 200 (application/json; charset=UTF-8)
+
+
+
+    + Body
+
+            {
+                "id": 1,
+                "paymentId": 7777,
+                "tagId": 9999
+            }        
+
+
+
 ## /api/v1/payments
 
 ### Get Payments [GET]
