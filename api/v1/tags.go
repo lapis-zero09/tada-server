@@ -26,7 +26,7 @@ func GetTag(c echo.Context) error {
 	var tag models.Tag
 	db.First(&tag, id)
 
-	if tag.Id != 0 {
+	if tag.ID > 0 {
 		return c.JSON(http.StatusOK, tag)
 	}
 	err := fmt.Errorf("tagId=%s is not found", id)
@@ -54,12 +54,12 @@ func UpdateTag(c echo.Context) error {
 	var tag models.Tag
 	db.First(&tag, id)
 
-	if tag.Id > 0 {
+	if tag.ID > 0 {
 		var newTag models.Tag
 		c.Bind(&newTag)
 		if newTag.Name != "" {
 			result := models.Tag{
-				Id:   tag.Id,
+				ID:   tag.ID,
 				Name: newTag.Name,
 			}
 			db.Save(&result)
@@ -79,7 +79,7 @@ func DeleteTag(c echo.Context) error {
 	var tag models.Tag
 	db.First(&tag, id)
 
-	if tag.Id > 0 {
+	if tag.ID > 0 {
 		db.Delete(&tag)
 		return c.NoContent(http.StatusNoContent)
 	}

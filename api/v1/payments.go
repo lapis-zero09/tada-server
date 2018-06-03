@@ -25,7 +25,7 @@ func GetPayment(c echo.Context) error {
 	var payment models.Payment
 	db.First(&payment, id)
 
-	if payment.Id != 0 {
+	if payment.ID > 0 {
 		return c.JSON(http.StatusOK, payment)
 	}
 	err := fmt.Errorf("paymentId=%s is not found", id)
@@ -38,7 +38,7 @@ func PostPayment(c echo.Context) error {
 	var payment models.Payment
 	c.Bind(&payment)
 
-	if payment.PlaceId > 0 && payment.Cost > 0 {
+	if payment.PlaceID > 0 && payment.Cost > 0 {
 		db.Create(&payment)
 		return c.JSON(http.StatusCreated, payment)
 	}
@@ -53,13 +53,13 @@ func UpdatePayment(c echo.Context) error {
 	var payment models.Payment
 	db.First(&payment, id)
 
-	if payment.Id > 0 {
+	if payment.ID > 0 {
 		var newPayment models.Payment
 		c.Bind(&newPayment)
-		if newPayment.PlaceId > 0 && newPayment.Cost > 0 {
+		if newPayment.PlaceID > 0 && newPayment.Cost > 0 {
 			result := models.Payment{
-				Id:      payment.Id,
-				PlaceId: newPayment.PlaceId,
+				ID:      payment.ID,
+				PlaceID: newPayment.PlaceID,
 				Cost:    newPayment.Cost,
 			}
 			db.Save(&result)
@@ -79,7 +79,7 @@ func DeletePayment(c echo.Context) error {
 	var payment models.Payment
 	db.First(&payment, id)
 
-	if payment.Id > 0 {
+	if payment.ID > 0 {
 		db.Delete(&payment)
 		return c.NoContent(http.StatusNoContent)
 	}

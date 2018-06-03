@@ -6,15 +6,19 @@ import (
 )
 
 type Payment struct {
-	Id      int `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
-	PlaceId int `gorm:"not null" form:"placeId" json:"placeId"`
+	ID      int `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
+	PlaceID int `gorm:"not null" form:"placeId" json:"placeId"`
 	Cost    int `gorm:"not null" form:"cost" json:"cost"`
 }
 
 func SamplePayments() []Payment {
 	payments := make([]Payment, 0, 10)
 	for i := 0; i < 10; i++ {
-		payments = append(payments, Payment{PlaceId: i + 1, Cost: (i + 1) * 1000})
+		payments = append(payments,
+			Payment{
+				PlaceID: i + 1,
+				Cost:    (i + 1) * 1000,
+			})
 	}
 	return payments
 }
