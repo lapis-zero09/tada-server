@@ -4,7 +4,7 @@ import "github.com/jinzhu/gorm"
 import _ "github.com/mattn/go-sqlite3"
 
 type Tag struct {
-	ID   int    `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
+	ID   int    `gorm:"primary_key" form:"id" json:"id"`
 	Name string `gorm:"not null" form:"tagName" json:"tagName"`
 }
 

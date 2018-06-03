@@ -8,7 +8,7 @@ import (
 )
 
 type PaymentTag struct {
-	ID        int `gorm:"AUTO_INCREMENT" form:"id" json:"id"`
+	ID        int `gorm:"primary_key" form:"id" json:"id"`
 	PaymentID int `gorm:"not null" form:"paymentId" json:"paymentId"`
 	TagID     int `gorm:"not null" form:"tagId" json:"tagId"`
 }
